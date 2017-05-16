@@ -1,4 +1,4 @@
-## Compilation
+# Compilation
 
 	make file=...
 
@@ -8,15 +8,15 @@ L'argument suivant `file` doit être un fichier contenant une fonction `main`. E
 	make file=prime.c
 	make file=clock.c
 
-## Exécution
+# Exécution
 
 	./ckpn
 
-## Nettoyage
+# Nettoyage
 
 	make clean
 
-## Interface
+# Interface
 
 Pour utiliser un des réseaux de Kahn, définir une macroconstante `KPNLIB` valant `tkpn`, `ptkpn`, `pskpn`, `skpn` ou `nkpn` suivant l'interface choisie, puis inclure `kpn.h`.
 
@@ -39,7 +39,7 @@ Certains types de données sont également mis à disposition pour l'interface :
 
 Toutes les fonctions qui retournent un entier retournent 0 en cas de succès, -1 en cas d'erreur. Dans le cas où c'est une fonction en amont qui a échoué, `errno` est positionnée correctement. Les fonctions renvoyant des pointeurs vers des données renvoient `NULL` en cas d'échec.
 
-## Rapport
+# Rapport
 
 Le présent projet est constitué de 5 implémentations des réseaux de Kahn en C99 POSIX, respectant dans la mesure du possible l'interface monadique initiale donnée en OCaml.
  
@@ -57,23 +57,23 @@ De plus, 3 exemples utilisant ces interfaces sont présents :
 
 À l'exception de l'implémentation de simulation et de l'utilisation de `pthread_yield` dans la première implémentation, tout est conforme au standard POSIX.
 
-# Implémentation 1 : threads
+## Implémentation 1 : threads
 
 On utilise la bibliothèque `pthread`. Un port est représenté par une file non bornée (implémentée sous la forme d'une liste simplement chaînée) ainsi que par un mutex garantissant l'exclusivité de l'accès à celle-ci.
 
-# Implémentation 2 : processus + tubes
+## Implémentation 2 : processus + tubes
 
 On utilise `fork` et `pipe`. Les données sont écrites avec `write` et lues avec `read`.
 
-# Implémentation 3 : processus + mémoire partagée
+## Implémentation 3 : processus + mémoire partagée
 
 On utilise `mmap` pour stocker une file de taille fixe (implémentée dans `static_fifo.c`, sous la forme d'un buffer circulaire). Un mutex avec l'attribut `PTHREAD_PROCESS_SHARED` garantit l'exclusivité de l'accès à la mémoire.
 
-# Implémentation 4 : sockets
+## Implémentation 4 : sockets
 
 On communique localement avec des sockets nommées sous la forme socketn, où n est le premier emplacement libre dans le répertoire courant. L'option `SO_REUSEADDR` est utilisée au moment de la construction des canaux. `doco` est implémenté grâce à `fork` et `wait`.
 
-# Implémentation 5 : simulation
+## Implémentation 5 : simulation
 
 **Attention :** plusieurs comportements indéterminés étant inévitables, cette implémentation est moins robuste que les précédentes et peut présenter des bugs inattendus. Globalement, on sort de POSIX. De plus, cette implémentation utilise des variables globales et n'est donc **pas réentrante**. En particulier, on ne peut pas créer du parallélisme récursivement. 
 
