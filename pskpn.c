@@ -68,8 +68,6 @@ int pskpn_get(void **data, pskpn_port_t *in) {
 
 		if (*data != NULL)
 			break;
-
-		pthread_yield();
 	}
 
 	return 0;

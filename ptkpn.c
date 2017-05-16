@@ -1,11 +1,7 @@
-#define _GNU_SOURCE
-#include <pthread.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include "fifo.h"
 #include "my_alloc.h"
 #include "ptkpn.h"
 

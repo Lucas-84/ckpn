@@ -1,6 +1,3 @@
-/* a faire : supprimer les headers inutiles */
-#define _GNU_SOURCE
-#include <stdio.h>
 #include <stdlib.h>
 #include "fifo.h"
 #include "my_alloc.h"

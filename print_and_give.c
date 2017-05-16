@@ -2,7 +2,7 @@
  * Incrémente un compteur de manière distribuée, où les processus se donnent
  * la main selon un ordre aléatoire fixé.
  */
-#define KPNLIB skpn
+#define KPNLIB tkpn
 #include "kpn.h"
 #include "my_alloc.h"
 #include <assert.h>
